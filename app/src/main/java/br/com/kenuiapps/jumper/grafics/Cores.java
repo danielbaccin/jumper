@@ -8,9 +8,17 @@ import android.graphics.Paint;
 public class Cores {
 
 
+    private static Paint corVerde;
+
     public static Paint getCorVermelha() {
         Paint paint = new Paint();
         paint.setColor(0xFFFF0000);
+        return paint;
+    }
+
+    public static Paint getCorVerde() {
+        Paint paint = new Paint();
+        paint.setColor(0xFF00FF00);
         return paint;
     }
 }

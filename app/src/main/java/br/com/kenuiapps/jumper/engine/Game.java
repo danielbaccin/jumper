@@ -10,6 +10,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import br.com.kenuiapps.jumper.R;
+import br.com.kenuiapps.jumper.elements.Cano;
 import br.com.kenuiapps.jumper.elements.Passaro;
 import br.com.kenuiapps.jumper.grafics.Tela;
 
@@ -24,6 +25,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
     private Passaro passaro;
     private Bitmap background;
     private Tela tela;
+    private Cano cano;
 
     public Game(Context context) {
         super(context);
@@ -35,6 +37,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
 
     private void inicializaELementos() {
         passaro = new Passaro();
+        cano = new Cano(tela, 400);
         Bitmap back = BitmapFactory.decodeResource(getResources(), R.drawable.background);
         background = Bitmap.createScaledBitmap(back, back.getWidth(), tela.getAltura(), false);
     }
@@ -51,6 +54,8 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
 
             passaro.desenhaNo(canvas);
             passaro.cai();
+            cano.desenhaNo(canvas);
+            cano.move();
 
 
             holder.unlockCanvasAndPost(canvas);
