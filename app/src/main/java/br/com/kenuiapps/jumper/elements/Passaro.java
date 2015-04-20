@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import br.com.kenuiapps.jumper.grafics.Cores;
+import br.com.kenuiapps.jumper.grafics.Tela;
 
 /**
  * Created by daniel on 18/04/15.
@@ -15,8 +16,10 @@ public class Passaro {
     private static final Paint COR_VERMELHA = Cores.getCorVermelha();
 
     private float altura;
+    private Tela tela;
 
-    public Passaro() {
+    public Passaro(Tela tela) {
+        this.tela = tela;
         this.altura = 100;
     }
 
@@ -26,10 +29,13 @@ public class Passaro {
 
     /* altura 0 representa o topo da tela */
     public void cai() {
+        boolean chegouNoChao = altura + RAIO > tela.getAltura();
+        if(!chegouNoChao)
         this.altura += 5;
     }
 
     public void pula() {
-        this.altura -= 150;
+        if(altura - RAIO > 0)
+            this.altura -= 150;
     }
 }
