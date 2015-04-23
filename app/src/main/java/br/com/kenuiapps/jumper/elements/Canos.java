@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import br.com.kenuiapps.jumper.grafics.Tela;
 
@@ -17,8 +18,12 @@ public class Canos {
     private static final int POSICAO_INICIAL = 400;
     private static final int DISTANCIA_ENTRE_CANOS = 200;
     private List<Cano> canos = new ArrayList<>();
+    private Tela tela;
+    private Pontuacao pontuacao;
 
-    public Canos(Tela tela) {
+    public Canos(Tela tela, Pontuacao pontuacao) {
+        this.tela = tela;
+        this.pontuacao = pontuacao;
         int posicao = POSICAO_INICIAL;
 
         for (int i = 0; i < QTD_DE_CANOS; i++) {
@@ -38,10 +43,26 @@ public class Canos {
     }
 
     public void move() {
-
-        for (Cano cano: canos){
+        ListIterator<Cano> interator = canos.listIterator();
+        while (interator.hasNext()){
+            Cano cano = interator.next();
             cano.move();
+            if(cano.saiuDaTela()){
+                pontuacao.aumenta();
+                interator.remove();
+                Cano outroCano = new Cano(tela, getMaximo() + DISTANCIA_ENTRE_CANOS);
+                interator.add(outroCano);
+            }
+
         }
 
+    }
+
+    private int getMaximo() {
+        int maximo = 0;
+        for (Cano cano: canos){
+            maximo = Math.max(cano.getPosicao(), maximo);
+        }
+        return maximo;
     }
 }
