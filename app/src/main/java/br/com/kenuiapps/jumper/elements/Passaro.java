@@ -11,8 +11,8 @@ import br.com.kenuiapps.jumper.grafics.Tela;
  */
 public class Passaro {
 
-    private static final float X = 100;
-    private static final float RAIO = 100;
+    public static final float X = 100;
+    public static final float RAIO = 100;
     private static final Paint COR_VERMELHA = Cores.getCorVermelha();
 
     private float altura;
@@ -37,5 +37,9 @@ public class Passaro {
     public void pula() {
         if(altura - RAIO > 0)
             this.altura -= 150;
+    }
+
+    public float getAltura() {
+        return altura;
     }
 }
