@@ -1,5 +1,6 @@
 package br.com.kenuiapps.jumper.elements;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
@@ -20,16 +21,18 @@ public class Canos {
     private List<Cano> canos = new ArrayList<>();
     private Tela tela;
     private Pontuacao pontuacao;
+    private Context context;
 
-    public Canos(Tela tela, Pontuacao pontuacao) {
+    public Canos(Tela tela, Pontuacao pontuacao, Context context) {
         this.tela = tela;
         this.pontuacao = pontuacao;
+        this.context = context;
         int posicao = POSICAO_INICIAL;
 
         for (int i = 0; i < QTD_DE_CANOS; i++) {
 
             posicao += DISTANCIA_ENTRE_CANOS;
-            Cano cano = new Cano(tela, posicao);
+            Cano cano = new Cano(tela, posicao, context);
             canos.add(cano);
         }
 
@@ -50,7 +53,7 @@ public class Canos {
             if(cano.saiuDaTela()){
                 pontuacao.aumenta();
                 interator.remove();
-                Cano outroCano = new Cano(tela, getMaximo() + DISTANCIA_ENTRE_CANOS);
+                Cano outroCano = new Cano(tela, getMaximo() + DISTANCIA_ENTRE_CANOS, context);
                 interator.add(outroCano);
             }
 

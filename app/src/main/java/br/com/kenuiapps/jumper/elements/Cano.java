@@ -1,8 +1,12 @@
 package br.com.kenuiapps.jumper.elements;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import br.com.kenuiapps.jumper.R;
 import br.com.kenuiapps.jumper.grafics.Cores;
 import br.com.kenuiapps.jumper.grafics.Tela;
 
@@ -15,19 +19,26 @@ public class Cano {
     private static final Paint VERDE = Cores.getCorVerde();
     private static final int TAMANHO_DO_CANO = 250;
     private static final int LARGURA_DO_CANO = 100;
+    private final Bitmap canoInferior;
+    private final Bitmap canoSuperior;
+    private Context context;
 
-    private float alturaDoCanoInferior;
+    private int alturaDoCanoInferior;
     private Tela tela;
     private int posicao;
-    private float alturaDoCanoSuperior;
+    private int alturaDoCanoSuperior;
 
 
-    public Cano(Tela tela, int posicao) {
+    public Cano(Tela tela, int posicao, Context context) {
 
         this.tela = tela;
         this.posicao = posicao;
+        this.context = context;
         alturaDoCanoInferior = tela.getAltura() - TAMANHO_DO_CANO - valorAleatorio();
         alturaDoCanoSuperior = 0 + TAMANHO_DO_CANO + valorAleatorio();
+        Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.cano);
+        canoInferior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, alturaDoCanoInferior, false);
+        canoSuperior = Bitmap.createScaledBitmap(bp, LARGURA_DO_CANO, alturaDoCanoSuperior, false);
     }
 
     private int valorAleatorio() {
@@ -40,11 +51,11 @@ public class Cano {
     }
 
     private void desenhaCanoInferior(Canvas canvas) {
-        canvas.drawRect(posicao, alturaDoCanoInferior, posicao + LARGURA_DO_CANO, tela.getAltura(), VERDE);
+        canvas.drawBitmap(canoInferior, posicao, alturaDoCanoInferior, null);
     }
 
     private void desenhaCanoSuperior(Canvas canvas) {
-        canvas.drawRect(posicao, 0, posicao + LARGURA_DO_CANO, alturaDoCanoSuperior, VERDE);
+        canvas.drawBitmap(canoSuperior, posicao, 0, null);
     }
 
     public void move() {

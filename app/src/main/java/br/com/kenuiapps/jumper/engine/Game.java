@@ -11,6 +11,7 @@ import android.view.View;
 
 import br.com.kenuiapps.jumper.R;
 import br.com.kenuiapps.jumper.elements.Canos;
+import br.com.kenuiapps.jumper.elements.GameOver;
 import br.com.kenuiapps.jumper.elements.Passaro;
 import br.com.kenuiapps.jumper.elements.Pontuacao;
 import br.com.kenuiapps.jumper.grafics.Tela;
@@ -28,9 +29,11 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
     private Tela tela;
     private Canos canos;
     private Pontuacao pontuacao;
+    private Context context;
 
     public Game(Context context) {
         super(context);
+        this.context = context;
 
         tela = new Tela(context);
         inicializaELementos();
@@ -38,9 +41,9 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
     }
 
     private void inicializaELementos() {
-        passaro = new Passaro(tela);
+        passaro = new Passaro(tela, context);
         pontuacao = new Pontuacao();
-        canos = new Canos(tela, pontuacao);
+        canos = new Canos(tela, pontuacao, context);
         Bitmap back = BitmapFactory.decodeResource(getResources(), R.drawable.background);
         background = Bitmap.createScaledBitmap(back, back.getWidth(), tela.getAltura(), false);
     }
@@ -63,6 +66,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
             pontuacao.desenhaNo(canvas);
 
             if(new VerificadorDeColisao(passaro, canos).temColisao()){
+                new GameOver(tela).voidDesenhaNo(canvas);
                 isRunnig =  false;
             }
 
