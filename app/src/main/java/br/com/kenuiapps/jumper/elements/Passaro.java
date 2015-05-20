@@ -26,7 +26,7 @@ public class Passaro {
     public Passaro(Tela tela, Context context) {
         this.tela = tela;
         this.altura = 100;
-        Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.passaro);
+        Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.rosto_joao);
         passaro = bp.createScaledBitmap(bp, RAIO * 2, RAIO * 2, false);
     }
 
