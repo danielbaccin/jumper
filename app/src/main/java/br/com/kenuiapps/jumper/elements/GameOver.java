@@ -22,7 +22,7 @@ public class GameOver {
     }
 
 
-    public void voidDesenhaNo(Canvas canvas){
+    public void desenhaNo(Canvas canvas){
         String gameOver = "Game Over";
         int centroHorizontal = centralizaTexto(gameOver);
         canvas.drawText(gameOver, centroHorizontal, tela.getAltura() / 2, VERMELHO);
