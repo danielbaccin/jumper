@@ -6,4 +6,4 @@ Basta fazer o clone, executar o build do gradle e dar o play =D
 O jogo foi desenvolvido baseado no livro do Felipe Torres.
 <a href="http://www.casadocodigo.com.br/products/livro-games-android" target="_blank">Aqui</a> o link para adquiri o livro.
 
-
+<img src="https://raw.githubusercontent.com/danielbaccin/jumper/master/screenshot.png">
