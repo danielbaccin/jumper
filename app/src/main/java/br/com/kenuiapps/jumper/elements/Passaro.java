@@ -32,8 +32,8 @@ public class Passaro {
 
     public void desenhaNo(Canvas canvas){
 
-        canvas.drawCircle(X, altura, RAIO, COR_VERMELHA);
-        //canvas.drawBitmap(passaro, X - RAIO, altura - RAIO,  null);
+        //canvas.drawCircle(X, altura, RAIO, COR_VERMELHA);
+        canvas.drawBitmap(passaro, X - RAIO, altura - RAIO,  null);
     }
 
     /* altura 0 representa o topo da tela */

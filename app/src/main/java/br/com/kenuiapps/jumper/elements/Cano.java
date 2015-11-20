@@ -51,13 +51,13 @@ public class Cano {
     }
 
     private void desenhaCanoInferior(Canvas canvas) {
-        canvas.drawRect(posicao, 0, posicao + LARGURA_DO_CANO, alturaDoCanoSuperior, VERDE);
-        //canvas.drawBitmap(canoInferior, posicao, alturaDoCanoInferior, null);
+        //canvas.drawRect(posicao, 0, posicao + LARGURA_DO_CANO, alturaDoCanoSuperior, VERDE);
+        canvas.drawBitmap(canoInferior, posicao, alturaDoCanoInferior, null);
     }
 
     private void desenhaCanoSuperior(Canvas canvas) {
-        //canvas.drawBitmap(canoSuperior, posicao, 0, null);
-        canvas.drawRect(posicao, alturaDoCanoInferior, posicao + LARGURA_DO_CANO, tela.getAltura(), VERDE);
+        canvas.drawBitmap(canoSuperior, posicao, 0, null);
+        //canvas.drawRect(posicao, alturaDoCanoInferior, posicao + LARGURA_DO_CANO, tela.getAltura(), VERDE);
     }
 
     public void move() {
