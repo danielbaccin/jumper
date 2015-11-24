@@ -30,6 +30,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
     private Canos canos;
     private Pontuacao pontuacao;
     private Context context;
+    private Som som;
 
     public Game(Context context) {
         super(context);
@@ -46,6 +47,8 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
         canos = new Canos(tela, pontuacao, context);
         Bitmap back = BitmapFactory.decodeResource(getResources(), R.drawable.background);
         background = Bitmap.createScaledBitmap(back, back.getWidth(), tela.getAltura(), false);
+        som = new Som(context);
+
     }
 
     @Override
@@ -66,6 +69,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
             pontuacao.desenhaNo(canvas);
 
             if(new VerificadorDeColisao(passaro, canos).temColisao()){
+                som.tocaSom(Som.COLISAO);
                 new GameOver(tela).desenhaNo(canvas);
                 isRunnig =  false;
             }

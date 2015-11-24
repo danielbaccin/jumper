@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import br.com.kenuiapps.jumper.engine.Som;
 import br.com.kenuiapps.jumper.grafics.Tela;
 
 /**
@@ -22,6 +23,7 @@ public class Canos {
     private Tela tela;
     private Pontuacao pontuacao;
     private Context context;
+    private Som som;
 
     public Canos(Tela tela, Pontuacao pontuacao, Context context) {
         this.tela = tela;
@@ -35,6 +37,7 @@ public class Canos {
             Cano cano = new Cano(tela, posicao, context);
             canos.add(cano);
         }
+        som = new Som(context);
 
     }
 
@@ -51,6 +54,7 @@ public class Canos {
             Cano cano = interator.next();
             cano.move();
             if(cano.saiuDaTela()){
+                som.tocaSom(Som.PONTOS);
                 pontuacao.aumenta();
                 interator.remove();
                 Cano outroCano = new Cano(tela, getMaximo() + DISTANCIA_ENTRE_CANOS, context);

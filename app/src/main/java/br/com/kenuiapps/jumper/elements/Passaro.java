@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import br.com.kenuiapps.jumper.R;
+import br.com.kenuiapps.jumper.engine.Som;
 import br.com.kenuiapps.jumper.grafics.Cores;
 import br.com.kenuiapps.jumper.grafics.Tela;
 
@@ -22,12 +23,14 @@ public class Passaro {
     private float altura;
     private Tela tela;
     private Bitmap passaro;
+    private Som som;
 
     public Passaro(Tela tela, Context context) {
         this.tela = tela;
         this.altura = 100;
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.rosto_joao);
         passaro = bp.createScaledBitmap(bp, RAIO * 2, RAIO * 2, false);
+        som = new Som(context);
     }
 
     public void desenhaNo(Canvas canvas){
@@ -46,6 +49,7 @@ public class Passaro {
     public void pula() {
         if(altura - RAIO > 0)
             this.altura -= 150;
+        som.tocaSom(Som.PULO);
     }
 
     public float getAltura() {
