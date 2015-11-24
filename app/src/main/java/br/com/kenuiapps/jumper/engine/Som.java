@@ -20,7 +20,7 @@ public class Som {
         sound  = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
         PULO = sound.load(context, R.raw.pulo, 1);
         PONTOS = sound.load(context, R.raw.pontos, 1);
-        COLISAO = sound.load(context, R.raw.colisao, 1);
+        COLISAO = sound.load(context, R.raw.youlose, 1);
     }
 
     public void tocaSom(int som){
