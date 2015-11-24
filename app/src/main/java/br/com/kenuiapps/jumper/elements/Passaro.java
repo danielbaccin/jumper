@@ -10,6 +10,7 @@ import br.com.kenuiapps.jumper.R;
 import br.com.kenuiapps.jumper.engine.Som;
 import br.com.kenuiapps.jumper.grafics.Cores;
 import br.com.kenuiapps.jumper.grafics.Tela;
+import br.com.kenuiapps.jumper.util.Constantes;
 
 /**
  * Created by daniel on 18/04/15.
@@ -25,13 +26,15 @@ public class Passaro {
     private Bitmap passaro;
     private Som som;
 
-    public Passaro(Tela tela, Context context) {
+    public Passaro(Tela tela, Context context, String personagemSelecionado) {
         this.tela = tela;
         this.altura = 100;
-        Bitmap bp = BitmapFactory.decodeResource(context.getResources(), R.drawable.rosto_joao);
+        Bitmap bp = BitmapFactory.decodeResource(context.getResources(),
+                        Constantes.JOAO.equals(personagemSelecionado) ? R.drawable.rosto_joao : R.drawable.handerson);
         passaro = bp.createScaledBitmap(bp, RAIO * 2, RAIO * 2, false);
         som = new Som(context);
     }
+
 
     public void desenhaNo(Canvas canvas){
 

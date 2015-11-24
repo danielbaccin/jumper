@@ -31,10 +31,12 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
     private Pontuacao pontuacao;
     private Context context;
     private Som som;
+    private String personagemSelecionado;
 
-    public Game(Context context) {
+    public Game(Context context, String personagemSelecionado) {
         super(context);
         this.context = context;
+        this.personagemSelecionado = personagemSelecionado;
 
         tela = new Tela(context);
         inicializaELementos();
@@ -42,7 +44,7 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
     }
 
     private void inicializaELementos() {
-        passaro = new Passaro(tela, context);
+        passaro = new Passaro(tela, context, personagemSelecionado);
         pontuacao = new Pontuacao();
         canos = new Canos(tela, pontuacao, context);
         Bitmap back = BitmapFactory.decodeResource(getResources(), R.drawable.background);

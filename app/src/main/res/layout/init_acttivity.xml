@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:id="@+id/frameLayout"
+    android:background="@drawable/background"
+    tools:context="br.com.kenuiapps.jumper.ui.activity.InitActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView_joao"
+        android:src="@drawable/rosto_joao"
+        android:onClick="iniciaGame"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/handerson"
+        android:id="@+id/imageView_mariana"
+        android:onClick="iniciaGame"
+        android:layout_alignBottom="@+id/imageView_joao"
+        android:layout_alignParentEnd="true" />
+
+
+    <TextView android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="60sp"
+        android:text="@string/app_name"
+        android:textStyle="bold"
+        android:textColor="@color/blue2"
+        android:shadowColor="@color/blue"
+        android:shadowDx="-1"
+        android:shadowDy="-1"
+        android:shadowRadius="1"
+        android:layout_above="@+id/imageView_mariana"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="61dp"/>
+
+</RelativeLayout>
