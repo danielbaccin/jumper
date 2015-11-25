@@ -10,6 +10,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import br.com.kenuiapps.jumper.R;
+import br.com.kenuiapps.jumper.dao.JumperDao;
 import br.com.kenuiapps.jumper.elements.Canos;
 import br.com.kenuiapps.jumper.elements.GameOver;
 import br.com.kenuiapps.jumper.elements.Passaro;
@@ -32,11 +33,13 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
     private Context context;
     private Som som;
     private String personagemSelecionado;
+    private JumperDao dao;
 
     public Game(Context context, String personagemSelecionado) {
         super(context);
         this.context = context;
         this.personagemSelecionado = personagemSelecionado;
+        this.dao = new JumperDao(context);
 
         tela = new Tela(context);
         inicializaELementos();
@@ -60,7 +63,6 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
             continue;
         }
             Canvas canvas = holder.lockCanvas();
-            //desenhar componentes
             canvas.drawBitmap(background, 0, 0, null);
 
             passaro.desenhaNo(canvas);
@@ -74,6 +76,8 @@ public class Game extends SurfaceView implements Runnable, View.OnTouchListener{
                 som.tocaSom(Som.COLISAO);
                 new GameOver(tela).desenhaNo(canvas);
                 isRunnig =  false;
+                pontuacao.setNome("daniel"); //deixar fixo por enquanto
+                dao.salvaPontuacao(pontuacao);
             }
 
             holder.unlockCanvasAndPost(canvas);

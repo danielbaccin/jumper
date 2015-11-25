@@ -5,6 +5,7 @@ package br.com.kenuiapps.jumper.util;
  */
 public class Constantes {
 
+    public static final String PONTUACAO_ID = "id";
     public static final String PONTUACAO_NOME = "nome";
     public static final String PONTUACAO_DATA = "data";
     public static final String PONTUACAO_PONTOS = "pontos";
@@ -24,7 +25,9 @@ public class Constantes {
     public static String CREATE_PONTUACAO = " CREATE TABLE pontuacao ( "
             + " id INTEGER CONSTRAINT 'PK_PONTUACAO' PRIMARY KEY AUTOINCREMENT, "
             + " nome VARCHAR(100) NOT NULL, "
-            + " data VARCHAR(10) NOT NULL, "
+            + " data DATE NOT NULL, "
             + " pontos INT  NOT NULL); ";
+
+    public static final String[] COLUNAS = new String[]{PONTUACAO_ID, PONTUACAO_NOME, PONTUACAO_DATA, PONTUACAO_PONTOS};
 
 }

@@ -9,12 +9,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import br.com.kenuiapps.jumper.R;
+import br.com.kenuiapps.jumper.dao.JumperDao;
+import br.com.kenuiapps.jumper.elements.Pontuacao;
 import br.com.kenuiapps.jumper.util.Constantes;
 
 public class InitActivity extends Activity {
 
     private ImageView imagemJoao;
     private ImageView imagemMariana;
+    private JumperDao dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class InitActivity extends Activity {
                 iniciaGame(Constantes.MARIANA);
             }
         });
+        this.dao = new JumperDao(this);
+        Pontuacao pontuacao = dao.buscarMaiorPontuacao();
 
     }
 

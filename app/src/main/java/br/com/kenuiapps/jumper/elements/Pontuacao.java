@@ -3,6 +3,8 @@ package br.com.kenuiapps.jumper.elements;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import java.util.Date;
+
 import br.com.kenuiapps.jumper.grafics.Cores;
 
 /**
@@ -11,13 +13,22 @@ import br.com.kenuiapps.jumper.grafics.Cores;
 public class Pontuacao {
 
     private static final Paint BRANCO = Cores.getCorDaPontuacao();
+
+    private int id;
     private int pontos = 0;
     private String nome;
-    private String data;
+    private Date data = new Date();
+
+    public Pontuacao() {    }
+
+
+    public Pontuacao(String nome, Date data, double pontos) {
+        this.nome = nome;
+        this.data = data;
+    }
 
     public void desenhaNo(Canvas canvas) {
         canvas.drawText(String.valueOf(pontos), 100, 100, BRANCO);
-
     }
 
     public void aumenta() {
@@ -40,11 +51,11 @@ public class Pontuacao {
         this.nome = nome;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 }

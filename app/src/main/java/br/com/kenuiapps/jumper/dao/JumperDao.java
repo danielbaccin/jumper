@@ -2,8 +2,11 @@ package br.com.kenuiapps.jumper.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import java.util.Date;
 
 import br.com.kenuiapps.jumper.R;
 import br.com.kenuiapps.jumper.elements.Pontuacao;
@@ -59,7 +62,7 @@ public class JumperDao {
         }
     }
 
-    public boolean insert(Pontuacao pontuacao) {
+    public boolean salvaPontuacao(Pontuacao pontuacao) {
 
         if (pontuacao != null) {
 
@@ -69,7 +72,7 @@ public class JumperDao {
                 ContentValues campos = new ContentValues();
 
                 campos.put(Constantes.PONTUACAO_NOME, pontuacao.getNome());
-                campos.put(Constantes.PONTUACAO_DATA, pontuacao.getData());
+                campos.put(Constantes.PONTUACAO_DATA, pontuacao.getData().getTime());
                 campos.put(Constantes.PONTUACAO_PONTOS, pontuacao.getPontos());
 
                 try {
@@ -85,6 +88,28 @@ public class JumperDao {
         }
 
         return false;
+    }
+
+    public Pontuacao buscarMaiorPontuacao(){
+        openConnection();
+        //Cursor cursor = db.raquery(Constantes.TABELA_PONTUACAO, new String[]{"nome", "data" ,"MAX(pontos)"} , null, null, null, null, null);
+        Cursor cursor  = db.query(Constantes.TABELA_PONTUACAO, new String [] {"MAX(pontos)"}, null, null, null, null, null);
+        if(cursor.moveToNext()){
+            Pontuacao pontuacao = criarPontuacao(cursor);
+            cursor.close();
+            return pontuacao;
+        }
+        closeConnection();
+        return null;
+    }
+
+    private Pontuacao criarPontuacao(Cursor cursor) {
+        Pontuacao pontuacao = new Pontuacao(
+                cursor.getString(cursor.getColumnIndex(Constantes.PONTUACAO_NOME)),
+                new Date(cursor.getLong(cursor.getColumnIndex(Constantes.PONTUACAO_DATA))),
+                cursor.getDouble(cursor.getColumnIndex(Constantes.PONTUACAO_PONTOS))
+        );
+        return pontuacao;
     }
 
 
