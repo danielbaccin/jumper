@@ -20,7 +20,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/handerson"
+        android:src="@drawable/rosto_mariana"
         android:id="@+id/imageView_mariana"
         android:onClick="iniciaGame"
         android:layout_alignBottom="@+id/imageView_joao"
@@ -33,13 +33,28 @@
         android:textSize="60sp"
         android:text="@string/app_name"
         android:textStyle="bold"
-        android:textColor="@color/blue2"
-        android:shadowColor="@color/blue"
+        android:textColor="#ff281d"
+        android:shadowColor="@color/black"
         android:shadowDx="-1"
         android:shadowDy="-1"
         android:shadowRadius="1"
         android:layout_above="@+id/imageView_mariana"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="61dp"/>
+
+    <TextView
+        android:id="@+id/topscores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="@string/topscores"
+        android:textStyle="bold"
+        android:textColor="#ff281d"
+        android:shadowColor="@color/black"
+        android:shadowDx="-1"
+        android:shadowDy="-1"
+        android:shadowRadius="1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

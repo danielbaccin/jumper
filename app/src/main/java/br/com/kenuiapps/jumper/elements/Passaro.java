@@ -30,7 +30,7 @@ public class Passaro {
         this.tela = tela;
         this.altura = 100;
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(),
-                        Constantes.JOAO.equals(personagemSelecionado) ? R.drawable.rosto_joao : R.drawable.mariana);
+                        Constantes.JOAO.equals(personagemSelecionado) ? R.drawable.rosto_joao : R.drawable.rosto_mariana);
         passaro = bp.createScaledBitmap(bp, RAIO * 2, RAIO * 2, false);
         som = new Som(context);
     }
