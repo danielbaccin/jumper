@@ -22,9 +22,10 @@ public class Pontuacao {
     public Pontuacao() {    }
 
 
-    public Pontuacao(String nome, Date data, double pontos) {
+    public Pontuacao(String nome, Date data, int pontos) {
         this.nome = nome;
         this.data = data;
+        this.pontos = pontos;
     }
 
     public void desenhaNo(Canvas canvas) {

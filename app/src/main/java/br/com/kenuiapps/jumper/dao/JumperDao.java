@@ -92,8 +92,9 @@ public class JumperDao {
 
     public Pontuacao buscarMaiorPontuacao(){
         openConnection();
-        //Cursor cursor = db.raquery(Constantes.TABELA_PONTUACAO, new String[]{"nome", "data" ,"MAX(pontos)"} , null, null, null, null, null);
-        Cursor cursor  = db.query(Constantes.TABELA_PONTUACAO, new String [] {"MAX(pontos)"}, null, null, null, null, null);
+//        Cursor cursor = db.rawQuery("","");
+        //Cursor cursor  = db.query(Constantes.TABELA_PONTUACAO, new String [] {"MAX(pontos)"}, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT nome, data, MAX(pontos) as pontos FROM pontuacao", null);
         if(cursor.moveToNext()){
             Pontuacao pontuacao = criarPontuacao(cursor);
             cursor.close();
@@ -107,7 +108,7 @@ public class JumperDao {
         Pontuacao pontuacao = new Pontuacao(
                 cursor.getString(cursor.getColumnIndex(Constantes.PONTUACAO_NOME)),
                 new Date(cursor.getLong(cursor.getColumnIndex(Constantes.PONTUACAO_DATA))),
-                cursor.getDouble(cursor.getColumnIndex(Constantes.PONTUACAO_PONTOS))
+                cursor.getInt(cursor.getColumnIndex(Constantes.PONTUACAO_PONTOS))
         );
         return pontuacao;
     }

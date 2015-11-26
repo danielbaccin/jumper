@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import br.com.kenuiapps.jumper.R;
 import br.com.kenuiapps.jumper.dao.JumperDao;
@@ -18,6 +19,7 @@ public class InitActivity extends Activity {
     private ImageView imagemJoao;
     private ImageView imagemMariana;
     private JumperDao dao;
+    private TextView topScores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +40,23 @@ public class InitActivity extends Activity {
                 iniciaGame(Constantes.MARIANA);
             }
         });
+        topScores = (TextView) findViewById(R.id.topscores);
+
+        buscaTopScore();
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       // buscaTopScore();
+    }
+
+    private void buscaTopScore() {
         this.dao = new JumperDao(this);
         Pontuacao pontuacao = dao.buscarMaiorPontuacao();
-
+        topScores.setText(topScores.getText() + " " + pontuacao.getPontos());
     }
 
     public void iniciaGame(String personagem){
