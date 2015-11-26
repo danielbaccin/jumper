@@ -92,8 +92,6 @@ public class JumperDao {
 
     public Pontuacao buscarMaiorPontuacao(){
         openConnection();
-//        Cursor cursor = db.rawQuery("","");
-        //Cursor cursor  = db.query(Constantes.TABELA_PONTUACAO, new String [] {"MAX(pontos)"}, null, null, null, null, null);
         Cursor cursor = db.rawQuery("SELECT nome, data, MAX(pontos) as pontos FROM pontuacao", null);
         if(cursor.moveToNext()){
             Pontuacao pontuacao = criarPontuacao(cursor);

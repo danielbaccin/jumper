@@ -39,9 +39,4 @@ public class MainActivity extends Activity {
         game.pausa();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
 }

@@ -2,7 +2,6 @@ package br.com.kenuiapps.jumper.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -18,7 +17,6 @@ public class InitActivity extends Activity {
 
     private ImageView imagemJoao;
     private ImageView imagemMariana;
-    private JumperDao dao;
     private TextView topScores;
 
     @Override
@@ -41,22 +39,19 @@ public class InitActivity extends Activity {
             }
         });
         topScores = (TextView) findViewById(R.id.topscores);
-
-        buscaTopScore();
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-       // buscaTopScore();
+        buscaTopScore();
+
     }
 
     private void buscaTopScore() {
-        this.dao = new JumperDao(this);
+        JumperDao dao = new JumperDao(this);
         Pontuacao pontuacao = dao.buscarMaiorPontuacao();
-        topScores.setText(topScores.getText() + " " + pontuacao.getPontos());
+        topScores.setText(getString(R.string.maior_pontuacao) + pontuacao.getPontos());
     }
 
     public void iniciaGame(String personagem){

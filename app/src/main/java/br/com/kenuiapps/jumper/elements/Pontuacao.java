@@ -19,7 +19,7 @@ public class Pontuacao {
     private String nome;
     private Date data = new Date();
 
-    public Pontuacao() {    }
+    public Pontuacao() {  this.data = new Date(); }
 
 
     public Pontuacao(String nome, Date data, int pontos) {

@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_init_acttivity">InitActtivity</string>
     <string name="topscores">Maior pontuação:</string>
+    <string name="maior_pontuacao">"Maior pontuação: "</string>
 
 </resources>
